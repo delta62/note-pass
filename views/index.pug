@@ -1,0 +1,20 @@
+doctype html 
+html(lang="en")
+  include includes/head.pug
+  body
+    h1= title
+    form.form(action='/s', method="post")
+      label(for="id") ID (optional):
+      input#id(type="text", name="id")
+
+      label(for="text") Message:
+      textarea#text(name="text", required=true, rows="5" placeholder="Enter your message here...")
+
+      label(for="ttl") Keep for:
+      select#ttl(name="ttl", required=true)
+        option(value='5') 5 minutes
+        option(value='60') 1 hour
+        option(value='1440') 1 day
+        option(value="10080") 1 week
+
+      input(type='submit', value="Send it")
