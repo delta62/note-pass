@@ -4,5 +4,5 @@ export async function log(ctx: Context, next: Next) {
   let start = Date.now()
   await next()
   let ms = Date.now() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+  console.log(`[${ctx.status}] ${ctx.method} ${ctx.url} - ${ms}ms`)
 }

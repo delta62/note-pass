@@ -83,3 +83,7 @@ pre {
   cursor: pointer;
   outline: none;
 }
+
+.copy-icon {
+  stroke: var(--text-color);
+}

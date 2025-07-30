@@ -2,17 +2,13 @@ import Router from '@koa/router'
 import koa from 'koa'
 import bodyParser from 'koa-bodyparser'
 import { z } from 'zod'
-import dotenv from 'dotenv'
 import views from 'koa-views'
 import path from 'node:path'
 import serve from 'koa-static'
 import { minutesToMilliseconds, uuid } from './util'
 import { notFound, log, withBody, normalize } from './middleware'
 
-dotenv.config()
-
 const PORT = process.env['PORT'] ?? 3000
-const APP_NAME = process.env['APP_NAME'] ?? 'Note Pass'
 const MAX_MESSAGE_LENGTH = 5_096 // 5 KiB
 
 const bodySchema = z.object({
@@ -21,7 +17,8 @@ const bodySchema = z.object({
     .number()
     .int()
     .min(1)
-    .max(60 * 24 * 7 * 30),
+    .max(60 * 24 * 7 * 30)
+    .default(5),
   text: z.string().min(1).max(MAX_MESSAGE_LENGTH).trim(),
 })
 
@@ -36,7 +33,7 @@ let router = new Router()
 let snippets = new Map<string, Snippet>()
 
 router.get('', async ctx => {
-  await ctx.render('index', { title: APP_NAME })
+  await ctx.render('index')
 })
 
 router.post('/s', withBody(bodySchema), async ctx => {
@@ -60,7 +57,11 @@ router.get('/s/:id', async ctx => {
     return 404
   }
 
-  await ctx.render('snippet', { snippet })
+  if (ctx.accepts('html')) {
+    await ctx.render('snippet', { snippet })
+  } else {
+    ctx.body = snippet.text
+  }
 })
 
 app

@@ -1,9 +1,11 @@
 {
-  "name": "pass",
+  "name": "note-pass",
   "version": "1.0.0",
+  "private": true,
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
     "start": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,7 +23,6 @@
   },
   "dependencies": {
     "@koa/router": "^13.1.1",
-    "dotenv": "^17.2.1",
     "koa": "^3.0.1",
     "koa-bodyparser": "^4.4.1",
     "koa-static": "^5.0.0",

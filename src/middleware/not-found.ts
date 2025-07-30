@@ -5,5 +5,6 @@ export async function notFound(ctx: Context, next: Next) {
 
   if (ctx.status === 404) {
     await ctx.render('not-found', {})
+    ctx.status = 404
   }
 }
