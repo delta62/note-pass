@@ -3,7 +3,7 @@ import multer from '@koa/multer'
 import koa from 'koa'
 import bodyParser from 'koa-bodyparser'
 import { z } from 'zod'
-import views from 'koa-views'
+import views from '@ladjs/koa-views'
 import serve from 'koa-static'
 import path from 'node:path'
 
