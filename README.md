@@ -50,3 +50,12 @@ This software isn't designed for encrypting sensitive information.
 Since nothing is saved to disk you might trust it with sensitive
 things if you trust the network and machine it runs on, but if
 someone has the URL, they can read it.
+
+Notes have the following limitations:
+
+- 5KiB message length (in theory. Unicode makes it complicated)
+- 20MiB upload size
+- 5 uploads per note
+
+These could be made configurable if someone needs it. Pull requests
+welcome.
